@@ -8,17 +8,18 @@
 @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
 extension View {
     
-    /// Uses the view to produce a PDF of size 8.5 inches x 11 inches, which is the standard page size in the US.
-    public func convertToPDFData_8_point_5_by_11_inches() throws -> Data {
-        try self
-            .frame(width: 612, height: 792)
-            .convertToPDFData()
-    }
-    
-    /// Uses the view to produce a PDF of size 8.27 inches x 11.69 inches, which is the standard page size in the EU.
-    public func convertToPDFData_8_point_27_by_11_point_69_inches() throws -> Data {
-        try self
-            .frame(width: 595.44, height: 841.68)
+    /// Uses the view to produce a PDF with the given dimensions.
+    public func convertToPDFData(
+        widthInInches: Double,
+        heightInInches: Double
+    ) throws -> Data {
+        
+        let pointsPerInch = 72.0
+        let widthInPoints = widthInInches * pointsPerInch
+        let heightInPoints = heightInInches * pointsPerInch
+        
+        return try self
+            .frame(width: widthInPoints, height: heightInPoints)
             .convertToPDFData()
     }
 }
