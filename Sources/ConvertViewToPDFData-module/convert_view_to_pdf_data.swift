@@ -16,7 +16,7 @@ extension View {
     }
     
     /// Uses the view to produce a PDF of size 8.27 inches x 11.69 inches, which is the standard page size in the EU.
-    public func convertToPDFData_8_point_27_by_11_point_69() throws -> Data {
+    public func convertToPDFData_8_point_27_by_11_point_69_inches() throws -> Data {
         try self
             .frame(width: 595.44, height: 841.68)
             .convertToPDFData()
